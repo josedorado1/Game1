@@ -38,7 +38,7 @@ def remove_spaces(text):
     >>> remove_spaces("   ")
     ''
     """
-    remove_space = remove_space.strip()
+    remove_space = text.strip()
     return remove_space
 
 
@@ -55,10 +55,9 @@ def normalise_input(user_input):
     """
     normal_text = ""
     for char in user_input:
-        if (not char.strip()) and (not char.isspace()):
-            char = ""
-        normal_text = normal_text + char
-    normal_text = normal_text.strip()
+        if (str.isdigit(char) or str.isalpha(char) or (char == " ")):
+            normal_text = normal_text + char        
+    normal_text = remove_spaces(normal_text)
     normal_text = normal_text.lower()
     return normal_text
 
@@ -77,12 +76,14 @@ def display_room(room):
     in their eyes. If you go west you can return to the
     Queen's Buildings.
     <BLANKLINE>
+    
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     print(" ")
     print (room["name"].upper())
     print(" ")
     print (room["description"])
+    print (" ")
     
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
